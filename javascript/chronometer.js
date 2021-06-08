@@ -1,26 +1,43 @@
 class Chronometer {
   constructor() {
-    // ... your code goes here
+    this.currentTime = 0;
+    this.intervalId =0;
   }
   startClick(callback) {
-    // ... your code goes here
+    let ourFunction = () => {
+      // increment this.currentTime by 1
+      this.currentTime += 1
+    }
+    this.intervalId = setInterval(ourFunction, 1000)
   }
+
   getMinutes() {
-    // ... your code goes here
+    return Math.floor(this.currentTime / 60)
+
   }
+    
+  
   getSeconds() {
-    // ... your code goes here
-  }
-  twoDigitsNumber() {
-    // ... your code goes here
+    let seconds = this.currentTime - (this.getMinutes() * 60)
+    console.log("seconds",this.currentTime )
+    return seconds
+  }  
+  
+  twoDigitsNumber(num) {
+    if (num < 10) {
+      return "0" + num
+    }else {
+      return num.toString()
+    }
   }
   stopClick() {
-    // ... your code goes here
+    clearInterval (this.intervalId)
   }
   resetClick() {
-    // ... your code goes here
+    this.currentTime = 0
   }
   splitClick() {
-    // ... your code goes here
+    let splitTime = `${this.twoDigitsNumber(this.getMinutes())}:${this.twoDigitsNumber(this.getSeconds())}`;
+    return splitTime
   }
 }
